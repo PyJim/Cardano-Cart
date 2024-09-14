@@ -1,0 +1,10 @@
+# virtual environment
+.venv
+env
+.virtualenv
+
+
+# others
+_pycache_
+*.pyc
+*.log
