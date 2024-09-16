@@ -2,9 +2,11 @@
 .venv
 env
 .virtualenv
-
+.env
+product_img
 
 # others
 _pycache_
 *.pyc
 *.log
+example.http

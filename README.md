@@ -182,7 +182,6 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
             "stock": 0,
             "category": "string",
             "images": ["string"],
-	        "average_rating": 4.5,
             "created_at": "datetime"
        }
     }
