@@ -468,8 +468,8 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     }
     ```
 
-### Checkout Cart
-- **POST** `/api/v1/{user_id}cart/checkout`
+### Clear Cart
+- **DELETE** `/api/v1/{user_id}/cart/`
 - **Description**: Checkout Cart.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:

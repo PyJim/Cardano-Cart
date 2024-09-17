@@ -8,5 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/users/', include('users.urls')),  # Include the users app's URLs
     path('api/v1/products/', include('products.urls')), # Include the products app)
+    path('api/v1/orders/', include('orders.urls')), # Include the orders app
+    path('api/v1/cart/', include('cart.urls')), # Include the cart app
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
