@@ -70,13 +70,14 @@ class OrderView(generics.CreateAPIView):
             except Order.DoesNotExist:
                 return Response({"error": "Order not found."}, status=status.HTTP_404_NOT_FOUND)
         
-            order = get_object_or_404(Order, id=id, buyer=request.user)
-            serializer = OrderSerializer(order)
+            order = get_object_or_404(Order, id=order_id, buyer=request.user)
+            serializer = self.get_serializer(order)
+
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         order = Order.objects.all()
         orders = Order.objects.filter(buyer=request.user)
-        serializer = OrderSerializer(order, many=True)
+        serializer = self.get_serializer(orders, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 

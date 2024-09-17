@@ -29,6 +29,7 @@ class CartProductView(APIView):
             else:
                 # If item is new, set the quantity
                 cart_item.quantity = quantity
+                cart_item.unit_price = product.price
                 cart_item.save()
 
             # Update cart total price
@@ -102,7 +103,8 @@ class CartProductView(APIView):
         items_data = [
             {
                 "product_id": item.product.id,
-                "quantity": item.quantity
+                "quantity": item.quantity,
+                "unit_price": item.unit_price
             }
             for item in cart_items
         ]
