@@ -49,6 +49,7 @@ class ProductView(APIView):
                 return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
             
             product = get_object_or_404(Product, id=id)
+            
             serializer = ProductSerializer(product, data=request.data, context={'request': request}, partial=False)  # full update (PUT)
 
             if serializer.is_valid():
