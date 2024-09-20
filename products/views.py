@@ -40,6 +40,7 @@ class ProductView(APIView):
     
 
     def put(self, request, id=None):
+        
         if id is not None:
             # Retrieve product by ID or return 404 if not found
             product_id = id
@@ -49,6 +50,8 @@ class ProductView(APIView):
                 return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
             
             product = get_object_or_404(Product, id=id)
+            if request.user != product.seller and not request.user.is_superuser:
+                return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
             
             serializer = ProductSerializer(product, data=request.data, context={'request': request}, partial=False)  # full update (PUT)
 
@@ -72,6 +75,10 @@ class ProductView(APIView):
             except Product.DoesNotExist:
                 return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
             product = get_object_or_404(Product, id=id)
+
+            if request.user != product.seller and not request.user.is_superuser:
+                return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
+            
             product.delete()
             return Response({
                 "message": "Product deleted successfully."
