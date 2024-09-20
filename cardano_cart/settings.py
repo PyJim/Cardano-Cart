@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'reviews',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
+
 ]
 
 MIDDLEWARE = [
@@ -169,3 +171,13 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+}
