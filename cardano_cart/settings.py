@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7@gp4-=uk2s)b_#f5=h_c8$#2qbv_=$x*)kih0p&c42nt3@g_d'
+#SECRET_KEY = 'django-insecure-7@gp4-=uk2s)b_#f5=h_c8$#2qbv_=$x*)kih0p&c42nt3@g_d'
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -117,7 +119,11 @@ DATABASES = {
     }
 }
 
-DATABASES ["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
+
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(databse_url)
+
+# "postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database"
 
 
 # Password validation
