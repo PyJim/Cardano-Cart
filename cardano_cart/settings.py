@@ -14,6 +14,7 @@ from datetime import timedelta
 import os
 from pathlib import Path
 import dj_database_url
+import logging
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +31,11 @@ SECRET_KEY = 'django-insecure-7@gp4-=uk2s)b_#f5=h_c8$#2qbv_=$x*)kih0p&c42nt3@g_d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+logger = logging.getLogger(__name__)
+
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = ['*']
+logger.warning(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
 
 # Application definition
