@@ -13,7 +13,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 ## User Endpoints
 
 ### Register
-- **POST** `/api/v1/users/register`
+- **POST** `/api/v1/users/register/`
 - **Description**: Register a new user.
 - **Request Body**:
     ```json
@@ -42,7 +42,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Login
-- **POST** `/api/v1/users/login`
+- **POST** `/api/v1/users/login/`
 - **Description**: Authenticate a user.
 - **Request Body**:
     ```json
@@ -66,7 +66,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get User Profile
-- **GET** `/api/v1/users/{id}`
+- **GET** `/api/v1/users/{id}/`
 - **Description**: Retrieve user details by ID.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -86,7 +86,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get all Users
-- **GET** `/api/v1/users`
+- **GET** `/api/v1/users/`
 - **Description**: Retrieve all users
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -109,7 +109,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 
 
 ### Update User Profile
-- **PUT** `/api/v1/users/{id}`
+- **PUT** `/api/v1/users/{id}/`
 - **Description**: Update user details.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -141,7 +141,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Delete User
-- **DELETE** `/api/v1/users/{id}`
+- **DELETE** `/api/v1/users/{id}/`
 - **Description**: Delete user account.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -156,7 +156,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 ## Product Endpoints
 
 ### Add Product
-- **POST** `/api/v1/products`
+- **POST** `/api/v1/products/`
 - **Description**: Add a new product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -188,7 +188,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get All Products
-- **GET** `/api/v1/products`
+- **GET** `/api/v1/products/`
 - **Description**: Get all products.
 - **Response**:
     ```json
@@ -207,7 +207,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get Product by ID
-- **GET** `/api/v1/products/{id}`
+- **GET** `/api/v1/products/{id}/`
 - **Description**: Get a product by its ID.
 - **Response**:
     ```json
@@ -224,7 +224,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Update Product
-- **PUT** `/api/v1/products/{id}`
+- **PUT** `/api/v1/products/{id}/`
 - **Description**: Update product details.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -257,7 +257,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Delete Product
-- **DELETE** `/api/v1/products/{id}`
+- **DELETE** `/api/v1/products/{id}/`
 - **Description**: Delete a product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -272,7 +272,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 ## Order Endpoints
 
 ### Get All Orders (Admin)
-- **GET** `/api/v1/orders`
+- **GET** `/api/v1/orders/`
 - **Description**: Get all orders.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -290,7 +290,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get Order by ID (Admin)
-- **GET** `/api/v1/orders/{id}`
+- **GET** `/api/v1/orders/{id}/`
 - **Description**: Get order details by ID.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -306,7 +306,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Create Order
-- **POST** `/api/v1/{user_id}/orders`
+- **POST** `/api/v1/{user_id}/orders/`
 - **Description**: Create a new order.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -336,7 +336,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get all user Orders
-- **GET** `/api/v1/{user_id}/orders`
+- **GET** `/api/v1/{user_id}/orders/`
 - **Description**: Get all user orders.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -354,7 +354,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 ### Get user Order by ID
 
-- **GET** `/api/v1/{user_id}/orders/{order_id}`
+- **GET** `/api/v1/{user_id}/orders/{order_id}/`
 - **Description**: Get user order details by ID.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -371,7 +371,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 
 
 ### Update Order
-- **PUT** `/api/v1/{user_id}/orders/{order_id}`
+- **PUT** `/api/v1/{user_id}/orders/{order_id}/`
 - **Description**: update order.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -401,7 +401,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 ## Cart Endpoints
 
 ### Add product to Cart
-- **POST** `/api/v1/{user_id}/cart`
+- **POST** `/api/v1/{user_id}/cart/`
 - **Description**: Add new item to cart.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -419,7 +419,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Remove product from Cart
-- **DELETE** `/api/v1/{user_id}/cart/{product_id}`
+- **DELETE** `/api/v1/{user_id}/cart/{product_id}/`
 - **Description**: Remove item from cart.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -430,7 +430,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Update product in Cart
-- **PUT** `/api/v1/{user_id}/cart/{product_id}`
+- **PUT** `/api/v1/{user_id}/cart/{product_id}/`
 - **Description**: Update item in cart.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -452,7 +452,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get Cart
-- **GET** `/api/v1/{user_id}/cart`
+- **GET** `/api/v1/{user_id}/cart/`
 - **Description**: View Cart.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -481,7 +481,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 
 ## Payment Endpoints
 ### Initiate Payment
-- **POST** `/api/v1/payment`
+- **POST** `/api/v1/payment/`
 - **Description**: Initiate payment for an order.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -502,7 +502,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Update Payment Status
-- **PUT** `/api/v1/payment/{payment_id}`
+- **PUT** `/api/v1/payment/{payment_id}/`
 - **Description**: Update payment status.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -527,7 +527,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
 ## Review Endpoints
 
 ### Add a Review
-- **POST** `/api/v1/{product_id}/reviews`
+- **POST** `/api/v1/{product_id}/reviews/`
 - **Description**: Add a review for a product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -547,7 +547,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Update a Review
-- **PUT** `/api/v1/{product_id}/reviews/{review_id}`
+- **PUT** `/api/v1/{product_id}/reviews/{review_id}/`
 - **Description**: Update a review for a product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Request Body**:
@@ -574,7 +574,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Delete a Review
-- **DELETE** `/api/v1/{product_id}/reviews/{review_id}`
+- **DELETE** `/api/v1/{product_id}/reviews/{review_id}/`
 - **Description**: Delete a review for a product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -585,7 +585,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get Review by ID
-- **GET** `/api/v1/{product_id}/reviews/{review_id}`
+- **GET** `/api/v1/{product_id}/reviews/{review_id}/`
 - **Description**: Get a review for a product.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:
@@ -601,7 +601,7 @@ This document provides the design of API endpoints for the Cardano Cart ecommerc
     ```
 
 ### Get all Reviews
-- **GET** `/api/v1/{product_id}/reviews`
+- **GET** `/api/v1/{product_id}/reviews/`
 - **Description**: Get all reviews.
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**:

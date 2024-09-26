@@ -6,9 +6,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'address', 'phone_number']
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'address', 'phone_number', 'wallet_id']
         extra_kwargs = {
             'password': {'write_only': True},
+            'wallet_id': {'write_only': True}
         }
 
     def create(self, validated_data):
@@ -46,16 +47,13 @@ class LoginSerializer(serializers.Serializer):
                 'missing_fields': f"Missing required fields: {', '.join(missing_fields)}"
             })
         return data
-    
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'address', 'phone_number', 'role', 'created_at', 'updated_at']
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'address', 'phone_number', 'role', 'created_at', 'updated_at']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'address', 'phone_number', 'role', 'wallet_id', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at', 'role']
+        extra_kwargs = {
+            'wallet_id': {'write_only': True}
+        }
