@@ -2,11 +2,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from cardano_cart import views  # Replace with the actual app name
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', views.home, name='home'),  # Root URL
+    # Add other URLs here
     path('api/v1/users/', include('users.urls')),  # Include the users app's URLs
     path('api/v1/products/', include('products.urls')), # Include the products app)
     path('api/v1/orders/', include('orders.urls')), # Include the orders app

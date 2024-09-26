@@ -11,3 +11,4 @@ _pycache_
 *.log
 example.http
 openapi.json
+api-test.http
