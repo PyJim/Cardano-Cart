@@ -89,6 +89,11 @@ class OrderView(generics.CreateAPIView):
             except Order.DoesNotExist:
                 return Response({"error": "Order not found."}, status=status.HTTP_404_NOT_FOUND)
             order = get_object_or_404(Order, id=order_id, buyer=request.user)
+
+            # Ensure the requesting user is deleting their own order or has admin permissions
+            if request.user != order.buyer and not request.user.is_superuser:
+                return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
+        
             order.delete()
             return Response({
                 "message": "Order deleted successfully."
@@ -103,6 +108,10 @@ class OrderView(generics.CreateAPIView):
                 order = Order.objects.get(id=order_id, buyer=request.user)
             except Order.DoesNotExist:
                 return Response({"error": "Order not found."}, status=status.HTTP_404_NOT_FOUND)
+            
+            # Ensure the requesting user is updating their own order or has admin permissions
+            if request.user != order.buyer and not request.user.is_superuser:
+                return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
             
             order = get_object_or_404(Order, id=order_id, buyer=request.user)
             serializer = OrderSerializer(order, data=request.data, context={'request': request}, partial=False)  # full update (PUT)

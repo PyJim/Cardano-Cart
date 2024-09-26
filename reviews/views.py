@@ -38,6 +38,11 @@ class ReviewView(CreateAPIView):
         except Review.DoesNotExist:
             return Response({"error": "Review not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        # Ensuring the requesting user is updating their own review(s) or has admin permissions
+        if request.user != review.user and not request.user.is_superuser:
+            return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
+        
+
         # Validate and update the review
         serializer = ReviewSerializer(review, data=request.data, partial=True, context={'request': request})
         
@@ -58,6 +63,10 @@ class ReviewView(CreateAPIView):
         except Review.DoesNotExist:
             return Response({"error": "Review not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        # Ensuring the requesting user is deleting their own review(s) or has admin permissions
+        if request.user != review.user and not request.user.is_superuser:
+            return Response({"error": "Permission denied."}, status=status.HTTP_403_FORBIDDEN)
+        
         # Delete the review
         review.delete()
         return Response({"message": "Review deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
