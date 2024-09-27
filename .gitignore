@@ -4,6 +4,7 @@ env
 .virtualenv
 .env
 product_img
+.cardano_env
 
 # others
 _pycache_

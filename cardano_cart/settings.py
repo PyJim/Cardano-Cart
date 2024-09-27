@@ -12,10 +12,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
 import logging
+from django.core.management.utils import get_random_secret_key
 
+
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+
+# Now use the environment variables in settings
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +31,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7@gp4-=uk2s)b_#f5=h_c8$#2qbv_=$x*)kih0p&c42nt3@g_d'
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
@@ -124,7 +133,7 @@ DATABASES = {
 }
 
 
-DATABASES["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
+# DATABASES["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
 
 # 
 
