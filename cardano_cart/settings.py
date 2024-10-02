@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'users',
     'products',
     'orders',
-    'cart',
     'payments',
     'reviews',
     'rest_framework',
