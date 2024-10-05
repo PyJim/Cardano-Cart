@@ -132,7 +132,7 @@ DATABASES = {
 }
 
 
-# DATABASES["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
+DATABASES["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
 
 # 
 
