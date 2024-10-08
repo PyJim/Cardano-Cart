@@ -43,13 +43,16 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 logger = logging.getLogger(__name__)
 
 #ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://localhost:3000', '*']
 logger.warning(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',  # Add this
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +71,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Add this at the top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,7 +81,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+CORS_ALLOW_ALL_ORIGINS = os.environ.get("CORS_ALLOW_ALL_ORIGINS", "False").lower() == "true"
+
 ROOT_URLCONF = 'cardano_cart.urls'
+
+CSRF_ALLOWED_ORIGINS = [
+    'http://localhost:3000'
+]
+
+CSRF_ALLOWED_METHODS = [
+    'POST',
+    'GET',
+    'DELETE',
+    'PUT',
+    'OPTIONS',
+]
 
 
 REST_FRAMEWORK = {
