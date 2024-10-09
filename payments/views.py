@@ -2,7 +2,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-
+from products.models import Product
 from orders.models import Order
 from payments.backends import verify_payment
 from payments.serializers import PaymentVerificationSerializer
@@ -11,15 +11,15 @@ from payments.serializers import PaymentVerificationSerializer
 class GetPaymentAddressView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, order_id):
+    def post(self, request, product_id):
         try:
-            order = Order.objects.get(id=order_id)  # Get the order by ID
-        except Order.DoesNotExist:
-            return Response({"error": "Order not found."}, status=status.HTTP_400_BAD_REQUEST)
+            product = Product.objects.get(id=product_id)  # Get the order by ID
+        except Product.DoesNotExist:
+            return Response({"error": "Product not found."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             # Get the seller's wallet address from the order's product
-            seller_address = order.product.seller.wallet_id
+            seller_address = product.seller.wallet_id
 
             # Return the generated address
             if not seller_address:

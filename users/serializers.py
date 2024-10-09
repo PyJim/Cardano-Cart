@@ -54,6 +54,4 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'address', 'phone_number', 'role', 'wallet_id', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at', 'role']
-        extra_kwargs = {
-            'wallet_id': {'write_only': True}
-        }
+

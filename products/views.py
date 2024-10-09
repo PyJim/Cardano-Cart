@@ -23,12 +23,11 @@ class ProductView(APIView):
 
 
     def get(self, request, id=None):
-        def get(self, request, id=None):
-            if id is not None:
-                # Retrieve product by ID or return 404 if not found
-                product = get_object_or_404(Product, id=id)
-                serializer = ProductSerializer(product, context={'request': request})
-                return Response(serializer.data, status=status.HTTP_200_OK)
+        if id is not None:
+            # Retrieve product by ID or return 404 if not found
+            product = get_object_or_404(Product, id=id)
+            serializer = ProductSerializer(product, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         # Retrieve all products
         products = Product.objects.all()
