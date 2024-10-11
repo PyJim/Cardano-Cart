@@ -33,3 +33,16 @@ class OrderSerializer(serializers.ModelSerializer):
         )
 
         return order
+
+    def to_representation(self, instance):
+        # Call the parent method to get the default representation
+        representation = super().to_representation(instance)
+
+        # Pass the request context to the product serializer
+        product_context = self.context.copy()
+        product_context['request'] = self.context['request']  # Make sure the request is included
+
+        # Update the product representation with the new context
+        representation['product'] = ProductSerializer(instance.product, context=product_context).data
+
+        return representation

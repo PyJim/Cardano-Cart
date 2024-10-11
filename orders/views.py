@@ -47,23 +47,23 @@ class OrderView(generics.CreateAPIView):
             if order_id:
                 # Get the order by ID
                 order = get_object_or_404(Order, id=order_id)
-                serializer = self.get_serializer(order)
+                serializer = self.get_serializer(order, context={'request': request})
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
             # Get all orders for admin
             orders = Order.objects.all()
-            serializer = self.get_serializer(orders, many=True)
+            serializer = self.get_serializer(orders, many=True, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         elif order_id is not None:
             # Get the user's specific order
             order = get_object_or_404(Order, id=order_id, buyer=request.user)
-            serializer = self.get_serializer(order)
+            serializer = self.get_serializer(order, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         # Get all orders for the current user
         orders = Order.objects.filter(buyer=request.user)
-        serializer = self.get_serializer(orders, many=True)
+        serializer = self.get_serializer(orders, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, order_id=None):
