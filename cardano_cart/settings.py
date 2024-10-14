@@ -147,12 +147,12 @@ WSGI_APPLICATION = 'cardano_cart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 #DATABASES["default"] = dj_database_url.parse("postgresql://cardano_cart_database_user:FmZnCacyg8QMUqjU7iVF7MWMlvBGYAsV@dpg-crmq5ba3esus7381ov3g-a.oregon-postgres.render.com/cardano_cart_database")
@@ -163,7 +163,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'koyebdb',
         'USER': 'koyeb-adm',
-        'PASSWORD': 'IRXEw7Ha2Fde',
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
         'OPTIONS': {'sslmode': 'require'},
     }
